@@ -9,12 +9,24 @@
     <!-- Icons -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+     <!-- Geist font -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
     <!-- Tailwind and DaisyUI -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+     <style>
+        *{
+            font-family: "Geist", sans-serif;
+        }
+        
+     </style>
 </head>
 
-<body class="bg-base-300 h-[100vh]">
+<body class="bg-base-300 min-h-screen">
 
     <nav class="bg-white flex flex-col sm:flex-row items-center justify-between gap-3 md:px-10 lg:px-20 py-5 shadow-sm">
         <!-- Left  -->
@@ -36,18 +48,48 @@
     </nav>
 
 
-    <main class="bg-base-300 w-full sm:w-10/12 mx-auto mb-4 mt-16">
+    <main class="bg-base-300 w-full sm:w-10/12 mx-auto mt-16">
 
         <!-- all, open, and close tab buttons -->
-        <section class="flex bg-white gap-2 px-1 sm:px-6 py-4 rounded-xl">
+        <section class="flex bg-white gap-2 px-1 sm:px-6 py-4 rounded-xl mb-4">
             <button class="btn btn-primary w-26">All</button>
             <button class="btn w-26">Open</button>
             <button class="btn w-26">Close</button>
         </section>
 
 
-        <!--  -->
+        <!-- Issue quantity -->
+         <section class="bg-white p-6 rounded-xl flex justify-between items-center">
+
+            <!-- Left -->
+             <div class="flex gap-2 items-center ">
+                <!-- ing -->
+                <div class="bg-base-300 rounded-full w-fit p-2">
+                    <img src="./assets/Aperture.png" alt="">
+                </div>
+                <!-- isuues -->
+                 <div class="">
+                    <h3 class="text-xl font-semibold"><span class="">50</span> Issues</h3>
+                    <p class="opacity-55">Track and manage your project issues</p>
+                 </div>
+
+             </div>
+
+            <!-- Right -->
+             <div class="flex justify-center items-center gap-4">
+                <div class="flex justify-center gap-1 items-center">
+                    <div class="rounded-full p-1.5 w-1 bg-[#00A96E]"></div>
+                    <p class="">Open</p>
+                </div>
+                <div class="flex justify-center items-center gap-1 ">
+                    <div class=" rounded-full p-1.5 w-1 bg-[#A855F7]"></div>
+                <p class="">Close</p>
+                </div>
+             </div>
+         </section>
     </main>
+
+    
 
 </body>
 </html>
