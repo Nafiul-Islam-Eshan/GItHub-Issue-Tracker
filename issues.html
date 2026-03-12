@@ -58,38 +58,49 @@
         </section>
 
 
-        <!-- Issue quantity -->
-         <section class="bg-white p-2 sm:p-6 rounded-xl flex justify-between items-center">
+        <!-- Issues -->
+         <section class="bg-base-100 rounded-xl">
 
-            <!-- Left -->
-             <div class="flex gap-2 items-center ">
-                <!-- ing -->
-                <div class="bg-base-300 rounded-full w-fit p-2">
-                    <img src="./assets/Aperture.png" alt="">
+            <!-- Issue quantity -->
+            <div class="bg-white p-2 sm:p-6 rounded-lg flex justify-between items-center shadow-lg">
+                <!-- Left -->
+                <div class="flex gap-2 items-center ">
+                    <!-- ing -->
+                    <div class="bg-base-300 rounded-full w-fit p-2">
+                        <img src="./assets/Aperture.png" alt="">
+                    </div>
+                    <!-- isuues -->
+                    <div class="">
+                        <h3 class="text-lg md:text-xl font-semibold"><span class="">50</span> Issues</h3>
+                        <p class="text-sm md:text-lg opacity-55">Track and manage your project issues</p>
+                    </div>
+
                 </div>
-                <!-- isuues -->
+
+                <!-- Right -->
+                <div class="flex justify-center items-center gap-4">
+                    <div class="flex justify-center gap-1 items-center">
+                        <div class="rounded-full p-1.5 w-1 bg-[#00A96E]"></div>
+                        <p class="">Open</p>
+                    </div>
+                    <div class="flex justify-center items-center gap-1 ">
+                        <div class=" rounded-full p-1.5 w-1 bg-[#A855F7]"></div>
+                        <p class="">Close</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Issue Cards -->
+            <div class="m-6 bg-white">
+                <!-- Cards -->
                  <div class="">
-                    <h3 class="text-lg md:text-xl font-semibold"><span class="">50</span> Issues</h3>
-                    <p class="text-sm md:text-lg opacity-55">Track and manage your project issues</p>
+                    
                  </div>
-
-             </div>
-
-            <!-- Right -->
-             <div class="flex justify-center items-center gap-4">
-                <div class="flex justify-center gap-1 items-center">
-                    <div class="rounded-full p-1.5 w-1 bg-[#00A96E]"></div>
-                    <p class="">Open</p>
-                </div>
-                <div class="flex justify-center items-center gap-1 ">
-                    <div class=" rounded-full p-1.5 w-1 bg-[#A855F7]"></div>
-                    <p class="">Close</p>
-                </div>
-             </div>
+            </div>
          </section>
     </main>
 
     
-
+    <script src="./script/issues.js"></script>
 </body>
 </html>
