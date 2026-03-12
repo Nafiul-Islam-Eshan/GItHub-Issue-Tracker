@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,32 @@
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <h1>WELCOME</h1>
+
+<body class="bg-base-300 h-[100vh]">
+
+    <section class="bg-white flex justify-between px-20 py-5 shadow-sm">
+        <!-- Left  -->
+        <div class="flex gap-1 items-center">
+            <div class="w-10"><img src="./assets/github-logo.png" alt=""></div>
+            <h2 class="font-semibold text-2xl">GitHub Issues Tracker</h2>
+        </div>
+
+        <!-- Right -->
+         <div class="join flex justify-center items-center gap-2">
+            <div>
+                <label class="input validator join-item relative">
+                    <input class="rounded-xl" type="text" placeholder="      search issues..."/>
+                    <span class="absolute opacity-45"><i class='fa-brands fa-sistrix'></i></span>
+                </label>
+            </div>
+            <button class="btn btn-primary join-item">+ New Issue</button>
+         </div>
+    </section>
+
+
+    <main class="bg-base-300 ">
+
+    </main>
+
 </body>
 </html>
