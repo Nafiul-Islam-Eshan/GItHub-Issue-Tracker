@@ -7,7 +7,7 @@ const issuesSearch = document.getElementById("issuesSearch")
 
 // Reuseable functions
 const createElement = (arr) => { 
-    const htmlElements = arr.map( el => ` <div class="badge border-gray-300 bg-base-300 text-sm rounded-2xl">${el}</div>`); 
+    const htmlElements = arr.map( el => ` <div class="badge border-gray-300 bg-base-300 text-xs  rounded-2xl">${el}</div>`); 
     return htmlElements.join(" "); 
 }
 const formatName = (name) => {
@@ -37,21 +37,6 @@ const loadIssueDetail = async (id) => {
 
 const displayIssueDetail = (detail) => {
     const issueDetails = document.getElementById("issueDetails")
-
-    //     {
-    // "id": 33,
-    // "title": "Add bulk operations support",
-    // "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
-    // "status": "open",
-    // "labels": [
-    // "enhancement"
-    // ],
-    // "priority": "low",
-    // "author": "bulk_barry",
-    // "assignee": "",
-    // "createdAt": "2024-02-02T10:00:00Z",
-    // "updatedAt": "2024-02-02T10:00:00Z"
-    // }
 
 
     issueDetails.innerHTML = `
@@ -150,7 +135,8 @@ const displayIssues = (issues) => {
         allContainer.append(newDiv.cloneNode(true));
         if (issue.status === "open") {
             openContainer.append(newDiv);
-        } else {
+        } 
+        else {
             closeContainer.append(newDiv);
         }
     });
@@ -220,8 +206,17 @@ function tabSwitchingStyle (tab){
 
 
 
-document.getElementById("issueBtn").addEventListener("click", () => {
-    console.log(issuesSearch.value);
+document.getElementById("issueSearchBtn").addEventListener("click", () => {
+    const search = document.getElementById("issueSearchInput").value.trim().toLowerCase()
+    console.log(search);
+
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+        .then(res => res.json())
+        .then(data => {
+            const allIssues = data.data;
+            const searchIssue = allIssues.filter( issue =>  issue.title.toLowerCase().includes(search));
+        displayIssues(searchIssue);
+        })
 })
 
 
