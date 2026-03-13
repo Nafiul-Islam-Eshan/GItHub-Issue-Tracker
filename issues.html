@@ -7,23 +7,24 @@
     <title>GitHub Issue Tracker</title>
 
     <!-- Icons -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-     <!-- Geist font -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Geist font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- Tailwind and DaisyUI -->
-     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-     <style>
-        *{
+    <style>
+        * {
             font-family: "Geist", sans-serif;
         }
-        
-     </style>
+    </style>
 </head>
 
 <body class="bg-base-300 min-h-screen">
@@ -36,15 +37,15 @@
         </div>
 
         <!-- Right -->
-         <div class="join flex justify-center items-center gap-2">
+        <div class="join flex justify-center items-center gap-2">
             <div class="">
                 <label class="input validator join-item relative ">
-                    <input id="issuesSearch" class="rounded-xl pl-6 " type="text" placeholder="search issues..."/>
+                    <input id="issuesSearch" class="rounded-xl pl-6 " type="text" placeholder="search issues..." />
                     <span class="absolute opacity-45  "><i class='fa-brands fa-sistrix'></i></span>
                 </label>
             </div>
             <button id="issueBtn" class="btn btn-primary join-item text-sm">+ New Issue</button>
-         </div>
+        </div>
     </nav>
 
 
@@ -59,7 +60,7 @@
 
 
         <!-- Issues -->
-         <section class="bg-base-100 rounded-xl">
+        <section class="bg-base-100 rounded-xl">
 
             <!-- Issue quantity -->
             <div class="bg-white p-2 sm:p-6 rounded-lg flex justify-between items-center shadow-lg">
@@ -91,65 +92,31 @@
             </div>
 
             <!-- All Issue Cards -->
-            <div id="issueCards" class="m-6 bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"> </div>
+            <div id="issueCards"
+                class="m-6 bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"> </div>
 
             <!-- Open isuue cards -->
-             <div id="openIssueCards" class="m-6 bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"> </div>
+            <div id="openIssueCards"
+                class="m-6 bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"> </div>
 
             <!-- Closed issue cards -->
-             <div id="closeIssueCards" class="m-6 bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"> </div>
+            <div id="closeIssueCards"
+                class="m-6 bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"> </div>
 
+            <!-- modal -->
             <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box p-8"> 
-                    <div class="space-y-6">
-                        <!-- Upper -->
-                        <div class="space-y-1">
-                            <h2 class="font-bold text-xl">Fix broken image uploads</h2>
-                            <div class="flex gap-2 items-center">
-                                <div class="badge bg-[#00A96E] text-white rounded-2xl">Opened</div>
-                                <div class="rounded-full p-[2px] w-1 bg-gray-400"></div>
-                                <p class="text-gray-500 text-sm">Opened by Fahim Ahmed</p>
-                                <div class="rounded-full p-[2px] w-1 bg-gray-400"></div>
-                                <p class="text-gray-500 text-sm">22/02/2026</p>
-                            </div>
-                        </div>
-                        <!-- Middle 1 -->
-                         <div class="">
-                             <div class="badge border-gray-300 bg-base-300 text-sm rounded-2xl">Bug</div>
-                             <div class="badge border-gray-300 bg-base-300 text-sm rounded-2xl">help wanted</div>
-                         </div>
-                         <!-- Middle 2 -->
-                         <p class="text-gray-500">
-                            The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.
-                         </p>
-                         <!-- Lower -->
-                          <div class="bg-base-200 p-4 flex justify-between gap-2 items-center">
-                            <!-- left -->
-                             <div class="w-1/2">
-                                <p class="text-gray-500 text-sm">Assignee:</p>
-                                <h4 class="text-sm font-semibold">Fahim Ahmed</h4>
-                             </div>
-                             <!-- Right -->
-                              <div class="w-1/2">
-                                 <p class="text-gray-500 text-sm">Priority:</p>
-                                 <div class="badge border-gray-300 bg-base-300 rounded-2xl">High</div>
-                              </div>
-                          </div>
-                    </div>
+                <div class="modal-box p-8">
 
-                    <div class="modal-action">
-                        <form method="dialog">
-                            <button class="btn btn-primary">Close</button>
-                        </form>
-                    </div>
-                </div>                            
+                    <div id="issueDetails"> </div>
+                </div>
 
             </dialog>
-            
-         </section>
+
+        </section>
     </main>
 
-    
+
     <script src="./script/issues.js"></script>
 </body>
+
 </html>
