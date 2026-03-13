@@ -52,9 +52,9 @@
 
         <!-- all, open, and close tab buttons -->
         <section class="flex bg-white gap-2 px-1 sm:px-6 py-4 rounded-xl mb-4">
-            <button class="text-xs btn btn-primary w-26">All</button>
-            <button class="text-xs btn w-26">Open</button>
-            <button class="text-xs btn w-26">Close</button>
+            <button onclick="tabSwitchingStyle ('all')" id="all" class="text-xs btn btn-primary w-26">All</button>
+            <button onclick="tabSwitchingStyle ('open')" id="open" class="text-xs btn w-26">Open</button>
+            <button onclick="tabSwitchingStyle ('close')" id="close" class="text-xs btn w-26">Close</button>
         </section>
 
 
@@ -93,35 +93,7 @@
             <!-- Issue Cards -->
             <div id="issueCards" class="m-6 bg-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 <!-- Cards -->
-                 <div class="p-4 shadow-xl border-t-[#00A96E] border-t-5 rounded-lg space-y-3">
-
-                    <!-- Upper part -->
-                    <div class="flex justify-between items-center">
-                        <div class=""><img src="./assets/Open-Status.png" alt=""></div>
-                        <div class="badge border-gray-300 bg-base-300 text-xs">High</div>
-                    </div>
-
-                    <!-- Middle part -->
-                    <div class="space-y-4">
-                        <div class="space-y-2">
-                            <h3 class="font-semibold text-sm">Fix navigation menu on mobile devices</h3>
-                            <p class="text-xs opacity-50">The navigation menu doesn't collapse properly on mobile devices...</p>
-                        </div>
-                        <div class="flex gap-2">
-                            <div class="badge border-gray-300 bg-base-300 text-xs">High</div>
-                            <div class="badge border-gray-300 bg-base-300 text-xs">High</div>
-                            <div class="badge border-gray-300 bg-base-300 text-xs">High</div>
-                        </div>
-                    </div>
-
-                    <hr class="opacity-15">
-
-                    <!-- Lower part -->
-                     <div class="space-y-1">
-                        <p class="opacity-50 text-xs">#1 by john_doe</p>
-                        <p class="opacity-50 text-xs">1/15/2024</p>
-                     </div>
-                </div>
+                 
                 
             </div>
          </section>
