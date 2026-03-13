@@ -85,7 +85,11 @@ const displayIssueDetail = (detail) => {
                 <!-- Right -->
                 <div class="w-1/2">
                     <p class="text-gray-500 text-sm">Priority:</p>
-                    <div class="badge border-gray-300 bg-base-300 rounded-2xl">${detail.priority}</div>
+                    <div class="badge rounded-2xl ${
+                        detail.priority==="high"? "text-[#EF4444] bg-[#FEECEC]" :  detail.priority==="medium"? "text-[#F59E0B] bg-[#FFF6D1]" : "border-gray-300 bg-base-300 "
+                    }">${
+                        detail.priority==="high"? "High" :  detail.priority==="medium"? "Medium" : "Low"
+                    }</div>
                 </div>
             </div>
         </div>
@@ -115,7 +119,11 @@ const displayIssues = (issues) => {
 
                     <div class="flex justify-between items-center">
                         <div class=""><img src="./assets/Open-Status.png" alt=""></div>
-                        <div class="badge border-gray-300 bg-base-300 text-xs">${issue.priority}</div>
+                        <div class="badge text-xs ${
+                            issue.priority==="high"? "text-[#EF4444] bg-[#FEECEC]" :  issue.priority==="medium"? "text-[#F59E0B] bg-[#FFF6D1]" : "border-gray-300 bg-base-300 "
+                        }">${
+                            issue.priority==="high"? "High" :  issue.priority==="medium"? "Medium" : "Low"
+                        }</div>
                     </div>
 
                     <div class="space-y-4">
