@@ -1,31 +1,13 @@
-
-const createElement = (arr) => { // receives an array
-  const htmlElements = arr.map( el => ` <div class="badge border-gray-300 bg-base-300 text-xs">${el}</div>`);  // creates a new array 
-  return htmlElements.join(" "); // converts the array into string and returns
+const createElement = (arr) => { 
+    const htmlElements = arr.map( el => ` <div class="badge border-gray-300 bg-base-300 text-xs">${el}</div>`); 
+    return htmlElements.join(" "); 
 }
 
-
-
-function tabSwitchingStyle (tab){
-    
-    const tabs = ["all", "open", "close"];
-    currentTab = tab;
-    
-    
-    for (const t of tabs) {
-        const selectedTab = document.getElementById(t);
-
-        if (t === tab){
-            selectedTab.classList.add("btn-primary")
-        }
-        else{
-            selectedTab.classList.remove("btn-primary")
-        }
-    }
-
-}
-
-
+let currentTab = "all";
+const allContainer = document.getElementById("issueCards");
+const openContainer = document.getElementById("openIssueCards");
+const closeContainer = document.getElementById("closeIssueCards");
+const issueCount = document.getElementById("issueCount");
 
 
 const loadIssues = () => {
@@ -37,8 +19,9 @@ const loadIssues = () => {
 }
 
 const displayIssues = (issues) => {
-    const parent = document.getElementById("issueCards");
-    parent.innerHTML = "";
+    allContainer.innerHTML = "";
+    openContainer.innerHTML = "";
+    closeContainer.innerHTML = "";
 
     issues.forEach(issue => {
         const newDiv = document.createElement("div")
@@ -71,11 +54,79 @@ const displayIssues = (issues) => {
                 </div>
         `;
 
-        parent.append(newDiv);
+        
+        // append clones so each container has its own node
+        allContainer.append(newDiv.cloneNode(true));
+        if (issue.status === "open") {
+            openContainer.append(newDiv.cloneNode(true));
+        } else {
+            closeContainer.append(newDiv.cloneNode(true));
+        }
     });
+
+    issuesCount();
 }
 
 loadIssues();
+
+
+
+
+const issuesCount = () => {    
+    const count = {   
+        all : allContainer.children.length,
+        open : openContainer.children.length,
+        close : closeContainer.children.length,
+    };
+
+
+    if (currentTab ==="all") available = count.all;
+    else if (currentTab === "open") available = count.open;
+    else if (currentTab === "close") available = count.close;
+
+    issueCount.innerText = available;
+
+}
+issuesCount();
+
+
+
+function tabSwitchingStyle (tab){
+    const tabs = ["all", "open", "close"];
+    currentTab = tab;
+
+    for (const t of tabs) {
+        const selectedTab = document.getElementById(t);
+        if (t === tab){
+            selectedTab.classList.add("btn-primary");
+        }
+        else{
+            selectedTab.classList.remove("btn-primary");
+        }
+    }
+
+
+    if (tab === "all") {
+        allContainer.classList.remove("hidden");
+        openContainer.classList.add("hidden");
+        closeContainer.classList.add("hidden");
+    } else if (tab === "open") {
+        allContainer.classList.add("hidden");
+        openContainer.classList.remove("hidden");
+        closeContainer.classList.add("hidden");
+    } else if (tab === "close") {
+        allContainer.classList.add("hidden");
+        openContainer.classList.add("hidden");
+        closeContainer.classList.remove("hidden");
+    }
+
+    issuesCount();
+}
+
+
+
+
+
 
 
 
