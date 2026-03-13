@@ -1,3 +1,11 @@
+
+const createElement = (arr) => { // receives an array
+  const htmlElements = arr.map( el => `<span class="btn opacity-70">${el}</span>`);  // creates a new array 
+  return htmlElements.join(" "); // converts the array into string and returns
+}
+
+
+
 // {
 // "id": 1,
 // "title": "Fix navigation menu on mobile devices",
@@ -19,7 +27,15 @@ const loadIssues = () => {
     
     fetch(url)
         .then(res => res.json())
-        .then(issues => console.log(issues.data));
+        .then(issues => displayIssues(issues.data));
+}
+
+const displayIssues = (issues) => {
+    const parent = document.getElementById("issueCards");
+    // parent.innerHTML = "";
+    issues.forEach(issue => {
+        console.log(issue);
+    });
 }
 
 loadIssues();
