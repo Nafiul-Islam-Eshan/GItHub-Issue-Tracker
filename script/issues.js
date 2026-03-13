@@ -1,13 +1,15 @@
-const createElement = (arr) => { 
-    const htmlElements = arr.map( el => ` <div class="badge border-gray-300 bg-base-300 text-xs">${el}</div>`); 
-    return htmlElements.join(" "); 
-}
-
 let currentTab = "all";
 const allContainer = document.getElementById("issueCards");
 const openContainer = document.getElementById("openIssueCards");
 const closeContainer = document.getElementById("closeIssueCards");
 const issueCount = document.getElementById("issueCount");
+const issuesSearch = document.getElementById("issuesSearch")
+
+const createElement = (arr) => { 
+    const htmlElements = arr.map( el => ` <div class="badge border-gray-300 bg-base-300 text-xs rounded-2xl">${el}</div>`); 
+    return htmlElements.join(" "); 
+}
+
 
 
 const loadIssues = () => {
@@ -62,12 +64,22 @@ const displayIssues = (issues) => {
         } else {
             closeContainer.append(newDiv.cloneNode(true));
         }
+        document.getElementById("my_modal_5").showModal()
     });
 
     issuesCount();
 }
 
 loadIssues();
+
+
+const loadIssueDetail = async (id) => { // id = unique id of word details
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  const res = await fetch(url); // fetching and getting respond
+  const detail = await res.json();  // converting the respond to json
+  console.log(detail.data); 
+}
+loadIssueDetail(1)
 
 
 
@@ -126,7 +138,9 @@ function tabSwitchingStyle (tab){
 
 
 
-
+document.getElementById("issueBtn").addEventListener("click", () => {
+    console.log(issuesSearch.value);
+})
 
 
 
