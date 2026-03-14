@@ -19,21 +19,26 @@ const showLoader = (state) => {
     const loader = document.getElementById("loader");
     if(state) {
         loader.classList.remove("hidden");
-        allContainer.classList.add("hidden");
-        openContainer.classList.add("hidden");
-        closeContainer.classList.add("hidden");
-    }
-    if(!state){
+    } else {
         loader.classList.add("hidden");
-        allContainer.classList.remove("hidden");
-        openContainer.classList.remove("hidden");
-        closeContainer.classList.remove("hidden");
     }
 }
 
-
-
-
+const setTabVisibility = () => {
+    if (currentTab === "all") {
+        allContainer.classList.remove("hidden");
+        openContainer.classList.add("hidden");
+        closeContainer.classList.add("hidden");
+    } else if (currentTab === "open") {
+        allContainer.classList.add("hidden");
+        openContainer.classList.remove("hidden");
+        closeContainer.classList.add("hidden");
+    } else if (currentTab === "close") {
+        allContainer.classList.add("hidden");
+        openContainer.classList.add("hidden");
+        closeContainer.classList.remove("hidden");
+    }
+}
 
 const loadIssues = async () => {
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
@@ -44,15 +49,14 @@ const loadIssues = async () => {
 
 const fetchIssues = async () => {
     showLoader(true);
-    const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
-    
-    fetch(url)
-        .then(res => res.json())
-        .then(issues => {
-            displayIssues(issues.data);
-            showLoader(false);
-        })
-}
+    try {
+        await loadIssues();
+    } catch (err) {
+        console.error(err);
+    } finally {
+        showLoader(false);
+    }
+};
 
 const loadIssueDetail = async (id) => { 
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
@@ -168,81 +172,72 @@ const displayIssues = (issues) => {
     });
 
     issuesCount();
+    setTabVisibility();
 }
 
 fetchIssues();
 
 
-const issuesCount = () => {    
-    const count = {   
+const issuesCount = () => {
+    const count = {
         all : allContainer.children.length,
         open : openContainer.children.length,
         close : closeContainer.children.length,
     };
 
-
-    if (currentTab ==="all") available = count.all;
-    else if (currentTab === "open") available = count.open;
+    let available = count.all;
+    if (currentTab === "open") available = count.open;
     else if (currentTab === "close") available = count.close;
 
     issueCount.innerText = available;
-
-}
+};
 issuesCount();
 
 
 
 async function tabSwitchingStyle (tab){
+    currentTab = tab;
     showLoader(true);
     await loadIssues();
-
-    const tabs = ["all", "open", "close"];
-    currentTab = tab;
-
-    for (const t of tabs) {
-        const selectedTab = document.getElementById(t);
-        if (t === tab){
-            selectedTab.classList.add("btn-primary");
-        }
-        else{
-            selectedTab.classList.remove("btn-primary");
-        }
-    }
-
-
-    if (tab === "all") {
-        allContainer.classList.remove("hidden");
-        openContainer.classList.add("hidden");
-        closeContainer.classList.add("hidden");
-    } else if (tab === "open") {
-        allContainer.classList.add("hidden");
-        openContainer.classList.remove("hidden");
-        closeContainer.classList.add("hidden");
-    } else if (tab === "close") {
-        allContainer.classList.add("hidden");
-        openContainer.classList.add("hidden");
-        closeContainer.classList.remove("hidden");
-    }
-
+    setTabHighlight(tab);
+    setTabVisibility();
     issuesCount();
     showLoader(false);
 }
 
+const setTabHighlight = (tab) => {
+    const tabs = ["all", "open", "close"];
+    for (const t of tabs) {
+        const selectedTab = document.getElementById(t);
+        if (t === tab) selectedTab.classList.add("btn-primary");
+        else selectedTab.classList.remove("btn-primary");
+    }
+};
 
 
-
-document.getElementById("issueSearchBtn").addEventListener("click", () => {
-    const search = document.getElementById("issueSearchInput").value.trim().toLowerCase()
-    console.log(search);
-
-    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-        .then(res => res.json())
-        .then(data => {
-            const allIssues = data.data;
-            const searchIssue = allIssues.filter( issue =>  issue.title.toLowerCase().includes(search));
+document.getElementById("issueSearchBtn").addEventListener("click", async () => {
+    const search = document.getElementById("issueSearchInput").value.trim().toLowerCase();
+    showLoader(true);
+    try {
+        const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+        const data = await res.json();
+        const allIssues = data.data || [];
+        const searchIssue = allIssues.filter(issue => issue.title.toLowerCase().includes(search));
+        currentTab = "all";
+        setTabHighlight("all");
         displayIssues(searchIssue);
-        })
-})
+    } 
+    catch (err) {
+        console.error(err);
+        currentTab = "all";
+        setTabHighlight("all");
+        displayIssues([]);
+    } 
+    finally {
+        setTabVisibility();
+        showLoader(false);
+    }
+});
 
 
 
