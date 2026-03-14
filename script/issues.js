@@ -15,17 +15,43 @@ const formatName = (name) => {
     const capitalizedWordsArr = wordsArr.map(word => word[0].toUpperCase() + word.slice(1));
     return capitalizedWordsArr.join(" ");
 };
+const showLoader = (state) => {
+    const loader = document.getElementById("loader");
+    if(state) {
+        loader.classList.remove("hidden");
+        allContainer.classList.add("hidden");
+        openContainer.classList.add("hidden");
+        closeContainer.classList.add("hidden");
+    }
+    if(!state){
+        loader.classList.add("hidden");
+        allContainer.classList.remove("hidden");
+        openContainer.classList.remove("hidden");
+        closeContainer.classList.remove("hidden");
+    }
+}
 
 
 
 
 
-const loadIssues = () => {
+const loadIssues = async () => {
+    const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+    const res = await fetch(url);
+    const data = await res.json();
+    displayIssues(data.data);
+};
+
+const fetchIssues = async () => {
+    showLoader(true);
     const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
     
     fetch(url)
         .then(res => res.json())
-        .then(issues => displayIssues(issues.data));
+        .then(issues => {
+            displayIssues(issues.data);
+            showLoader(false);
+        })
 }
 
 const loadIssueDetail = async (id) => { 
@@ -144,12 +170,7 @@ const displayIssues = (issues) => {
     issuesCount();
 }
 
-loadIssues();
-
-
-
-
-
+fetchIssues();
 
 
 const issuesCount = () => {    
@@ -171,7 +192,10 @@ issuesCount();
 
 
 
-function tabSwitchingStyle (tab){
+async function tabSwitchingStyle (tab){
+    showLoader(true);
+    await loadIssues();
+
     const tabs = ["all", "open", "close"];
     currentTab = tab;
 
@@ -201,6 +225,7 @@ function tabSwitchingStyle (tab){
     }
 
     issuesCount();
+    showLoader(false);
 }
 
 
